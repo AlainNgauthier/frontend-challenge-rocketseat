@@ -3,18 +3,21 @@ import { Inter } from '@next/font/google'
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
-import * as S from '@/styles/Home.styles';
+import * as S from '@styles/Home.styles';
 import { GET_ALL_PRODUCTS } from '../../services/graphql/product.queries';
-import Card from '@/components/Card';
-import { TProductCard } from '@/components/Card/types';
+import Card from '@components/Card';
+import { TProductCard } from '@components/Card/types';
 
-const inter = Inter({ subsets: ['latin'] })
+const PAGE_SIZE = 12;
 
 export default function Home() {
   const [allProducts, setAllProducts] = useState([]);
 
   const { loading, error, data: dataProducts } = useQuery(GET_ALL_PRODUCTS, {
     ssr: false,
+    // variables: {
+    //   limit: PAGE_SIZE,
+    // },
     onCompleted: () => {
       if (error) console.error(error);
     }
