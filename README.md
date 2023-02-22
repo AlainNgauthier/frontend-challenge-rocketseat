@@ -50,9 +50,9 @@ pnpm dev
 
 ### Stacks
 
-Next.js 12
-Styled components
-GraphQL
+- Next.js 12
+- Styled components
+- GraphQL
 
 
 
