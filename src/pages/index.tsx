@@ -1,14 +1,32 @@
-import Head from 'next/head';
-import { Inter } from '@next/font/google'
+import { GetServerSideProps } from 'next';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
-import * as S from '@styles/Home.styles';
 import { GET_ALL_PRODUCTS } from '../../services/graphql/product.queries';
 import Card from '@components/Card';
 import { TProductCard } from '@components/Card/types';
 
-const PAGE_SIZE = 12;
+import * as S from '@styles/Home.styles';
+
+// const PAGE_SIZE = 12;
+
+type TPage = {
+  title: string;
+  description?: string;
+}
+
+export const getServerSideProps: GetServerSideProps<{ pageData: TPage }> = async (context) => {
+  const pageData: TPage = {
+    title: 'Rocketseat Challenge',
+    description: 'Frontend Test'
+  }
+
+  return {
+    props: {
+      pageData,
+    },
+  }
+}
 
 export default function Home() {
   const [allProducts, setAllProducts] = useState([]);
@@ -27,20 +45,13 @@ export default function Home() {
     if (dataProducts) setAllProducts(dataProducts.allProducts)
   }, [dataProducts]);
 
-  useEffect(() => {
-    console.log(allProducts);
-  }, [allProducts]);
+  // useEffect(() => {
+  //   console.log(allProducts);
+  // }, [allProducts]);
   
   if (loading) return <p>Loading...</p>;
 
   return (
-    <>
-      <Head>
-        <title>Rocketseat Challenge</title>
-        <meta name="description" content="E-commerce Application" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <S.ProductArea>
         {allProducts?.map((item: TProductCard) => (
           <Card 
@@ -53,6 +64,5 @@ export default function Home() {
           />
         ))}
       </S.ProductArea>
-    </>
   )
 }

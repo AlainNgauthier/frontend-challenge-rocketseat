@@ -13,11 +13,12 @@ const inter = Saira({
 
 export default function App({ Component, pageProps }: AppProps) {
   const client = useApollo();
+  
 
   return (
     <ApolloProvider client={client}>
       <main className={inter.className}>
-        <Layout>
+        <Layout {...pageProps}>
           <Component {...pageProps} />
         </Layout>
       </main>
