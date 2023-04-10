@@ -2,13 +2,13 @@ import { GetServerSideProps } from 'next';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
-import { GET_ALL_PRODUCTS } from '../../services/graphql/product.queries';
+import { GET_ALL_PRODUCTS } from '@graphql/product.queries';
 import Card from '@components/Card';
 import { TProductCard } from '@components/Card/types';
 
 import * as S from '@styles/Home.styles';
 
-// const PAGE_SIZE = 12;
+// const PRODUCT_PER_PAGE = 12;
 
 type TPage = {
   title: string;
@@ -33,9 +33,6 @@ export default function Home() {
 
   const { loading, error, data: dataProducts } = useQuery(GET_ALL_PRODUCTS, {
     ssr: false,
-    // variables: {
-    //   limit: PAGE_SIZE,
-    // },
     onCompleted: () => {
       if (error) console.error(error);
     }
@@ -44,10 +41,6 @@ export default function Home() {
   useEffect(() => {
     if (dataProducts) setAllProducts(dataProducts.allProducts)
   }, [dataProducts]);
-
-  // useEffect(() => {
-  //   console.log(allProducts);
-  // }, [allProducts]);
   
   if (loading) return <p>Loading...</p>;
 

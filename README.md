@@ -1,9 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-### Getting Started
+### Setup
 
-
-First, run the development server on the directory services/api :
+First of all, run the development server on the directory services/api using npm:
 
 ```
 npm install
@@ -12,7 +11,7 @@ npm start
 
 ```
 
-...and then run the development server on the root directory:
+...and then run the development server on the root directory by using yarn:
 
 ```bash
 npm run dev
@@ -48,11 +47,11 @@ pnpm dev
 
         \_ /styles: contains the global style of the project
 
-### Stacks
+### Technologies
 
-- Next.js 12
-- Styled components
-- GraphQL
+- Next.JS version 13
+- Styled-components version 5
+- GraphQL version 16
 
 
 
